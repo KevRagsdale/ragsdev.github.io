@@ -22,7 +22,6 @@
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Third-party CSS Files -->
-    <link href="/lib/sweetalert2/sweetalert2.min.css?v11.15.10" rel="stylesheet">
     <link href="/lib/bootstrap5/css/bootstrap.min.css?v=5.3.3" rel="stylesheet">
     <link href="/lib/fontawesome/css/all.min.css?5.11.2" rel="stylesheet">
     <link href="/lib/bootstrap-icons/font/bootstrap-icons.min.css?1.11.3" rel="stylesheet">
@@ -32,13 +31,6 @@
 
     <!-- Bootstrap Themes and Sweet Alert Support -->
     <script src="/assets/js/color-modes.js?v=1.0.0"></script>
-    <script src="/lib/sweetalert2/sweetalert2.all.min.js?v=11.15.10"></script>
-
-    <!-- "Default" javascript to read and set cookies, check for localStorage support, etc. -->
-    <script src="/assets/js/default.js?v=1.04"></script>
-
-    <!-- Authentication -->
-    <script src="/assets/js/auth-manager.js?v=1.17"></script>
 
     <style>
         .card-custom {
@@ -84,7 +76,7 @@
             <button class="navbar-toggler d-flex d-lg-none ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-</div>
+        </div>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbar2Label">
@@ -101,9 +93,6 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- <%= RenderPartial("~/views/_nav.wcs") %> -->
-
         </div>
     </nav>
 
@@ -186,7 +175,6 @@
             
         Ready to work with someone who gets it? <a href="mailto:kevin@rags.dev" class="custom-anchor">Let's talk!</a> 
 
-
     </div>
     
     
@@ -194,7 +182,7 @@
     <footer class="footer sticky-bottom bg-body-secondary shadow-sm">
         <!-- <div class="container"> -->
         <div class="container d-flex justify-content-between align-items-center">
-            <p class="mt-2 mb-2">©2025 <a href="https://rags.dev" class="custom-anchor" target="_blank">Kevin Ragsdale</a></p>
+            <p class="mt-2 mb-2">©2026 <a href="https://rags.dev" class="custom-anchor" target="_blank">Kevin Ragsdale</a></p>
 
             <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                 <symbol id="check2" viewBox="0 0 16 16">
@@ -259,121 +247,6 @@
 
     <!-- Bootstrap Utilities -->
     <script src="/lib/bootstrap5/js/bootstrap.bundle.min.js?v=5.3.3"></script>  
-    
-    <script>
-        (()=>{
-            document.addEventListener('DOMContentLoaded',()=> {
-                const logoutLinks = document.querySelectorAll('.logout');
-                logoutLinks.forEach((x)=>{
-                    x.addEventListener('click', ()=> {
-                        AuthManager.logout(true);
-                        window.location = `${window.location.origin}${window.location.pathname}`;
-                    })
-                });
-
-                try {
-                    const showLoggedIn = document.querySelectorAll('.loggedin');
-                    const showLoggedOut = document.querySelectorAll('.loggedout');
-                    AuthManager.checkAuthenticationStatus()
-                    .then(isAuthenticated => {
-                        showLoggedIn.forEach((x)=>{
-                            if (isAuthenticated === true) {
-                                x.classList.remove('z-hidden');
-                            } else {
-                                x.classList.add('z-hidden');
-                            } 
-                        })
-
-                        showLoggedOut.forEach((x)=>{
-                            if (isAuthenticated === true) {
-                                x.classList.add('z-hidden');
-                            } else {
-                                x.classList.remove('z-hidden');
-                            } 
-                        })
-                    })
-                } catch(err) {
-                    
-                }
-            })
-        })()
-
-        function login() {
-            const a = document.createElement('a');
-            a.href = `https://accounts.rags.dev/signin/?continue=${window.location.href}`;
-            a.click();
-        }
-
-        function loadSweetAlert2(callback) {
-            if (!window.Swal) { // Check if SweetAlert2 is not already loaded
-                const script = document.createElement('script');
-                script.src = 'https://accounts.rags.dev/lib/sweetalert2/sweetalert2.all.min.js';
-                script.type = 'text/javascript';
-                script.onload = callback; // Execute a callback once the script is loaded
-                script.onerror = () => {
-                    console.error('Failed to load SweetAlert2 library.');
-                    alert('Error loading SweetAlert2. Please try again later.');
-                };
-                document.head.appendChild(script);
-            } else {
-                callback(); // SweetAlert2 is already loaded
-            }
-        }
-        
-        // `showAlert` function should be outside `loadSweetAlert2`
-        function showAlert(title, message, type, onConfirm, isHtml) {
-            // Handle optional parameters
-            if (typeof onConfirm !== "function") {
-                isHtml = onConfirm; // If onConfirm is not a function, treat it as isHtml
-                onConfirm = null;   // Reset onConfirm since it's not a function
-            }
-            
-            if (typeof isHtml !== "boolean") {
-                isHtml = true; // Default to true if isHtml is not provided
-            }
-
-            loadSweetAlert2(() => {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-default"
-                    },
-                    buttonsStyling: false
-                });
-
-                swalWithBootstrapButtons.fire({
-                    title: title,
-                    [isHtml ? 'html' : 'text']: message,
-                    icon: type,
-                    confirmButtonText: 'OK'
-                })
-                .then((result) => {
-                    if (result.isConfirmed && typeof onConfirm === "function") {
-                        onConfirm();
-                    }
-                });
-            });
-        }
-
-        // <% IF !EMPTY(pcActivePage) %>
-            const navlinks = document.querySelectorAll('.nav-link');
-            navlinks.forEach((x)=> {
-                if (x.id !="bd-theme") {
-                    if (x.classList.contains('<%= pcActivePage %>')) {
-                        x.classList.remove('text-white');
-                        x.classList.add('text-secondary');
-                    } else {
-                        x.classList.remove('text-secondary');
-                        x.classList.add('text-white');
-                    }
-                }
-                
-            })
-
-        // <% ENDIF %>
-    </script>
-    
-    <!-- <%= RenderSection("scripts") %> -->
     
 </body>
 </html>
