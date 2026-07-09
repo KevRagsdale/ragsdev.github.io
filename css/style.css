@@ -1,0 +1,40 @@
+:root {
+    --primary-color: #007bff; /* default color */
+    --secondary-color: #6c757d; /* default color */
+    --body-bg: #ffffff; /* default background color */
+    --body-text: #212529; /* default text color */
+    
+    /* Dark mode color variables */
+    --dark-primary-color: #28a745;
+    --dark-secondary-color: #adb5bd;
+    --dark-body-bg: #343a40;
+    --dark-body-text: #ffffff;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--body-text);
+}
+  
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.consonants {
+  animation: shrink-hide 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s forwards;
+  display: inline-block;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+      --primary-color: var(--dark-primary-color);
+      --secondary-color: var(--dark-secondary-color);
+      --body-bg: var(--dark-body-bg);
+      --body-text: var(--dark-body-text);
+    }
+}
