@@ -1,0 +1,113 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+[data-bs-theme="light"] body {
+  background-color: #fcfcfc                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ; /* Light gray background */
+}
+.bd-mode-toggle {
+  z-index: 1500;
+}
+.bd-mode-toggle .dropdown-menu .active .bi {
+  display: block !important;
+}
+.custom-anchor {
+  text-decoration: none !important;
+  color: #40A9FF !important;
+}
+.bi {
+  fill: currentColor;
+  margin-right: 10px;
+}
+.text-brand {
+  color: #40A9FF !important;
+}
+.navbar {
+  z-index: 1030;
+  overflow: visible; /* Allow dropdowns to extend outside */
+}
+.navbar .dropdown-menu {
+  position: absolute; /* Allow the menu to render outside the navbar */
+  top: 100%; /* Position below the toggle button */
+  left: auto; /* Keep aligned to the right */
+  z-index: 1050; /* Ensure it appears above other elements */
+}
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+.nav-link {
+  text-overflow: ellipsis;
+}
+.content-area {
+  flex: 1;
+  overflow-wrap:anywhere;
+  /* overflow-y: auto; */
+  padding: 20px;
+  padding-top: 100px; /* Adjust to match the navbar height */
+}
+.footer {
+  padding: 5px;
+}
+.offcanvas {
+  transition: transform 0.3s ease-in-out; /* Adjust timing as needed */
+}
+.page-header-text {
+  font-size: 1.52em;    
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid;
+  paint-order: stroke;
+}
+
+/* .navbar i span{
+  animation: shrink-hide 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s forwards;
+  display: inline-block;
+  font-weight: 300;
+  opacity: 0.5;
+} */
+
+@media (max-width: 767.98px) {
+  .navbar-toggler {
+      display: inline-block;
+  }
+  .navbar .dropdown {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .navbar-toggler {
+      display: none;
+  }
+}
+.z-hidden {
+  display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .gray-bg,
+.bg-muted {
+  background-color: #f3f3f4;
+} */
